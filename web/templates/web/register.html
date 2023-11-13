@@ -16,7 +16,7 @@
 
     <div class="row justify-content-center align-items-center ms-4 me-4 mt-1">
         <div class="col-md-6">
-            <form action="{% url 'web:formulario' %}" method="post">
+            <form action="{% url 'web:register' %}" method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <p> 

@@ -8,7 +8,8 @@ from django.contrib import messages
 
 app_name = 'web'
 
-def index(request):
+#metodo login comparando datos api
+def login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -38,29 +39,38 @@ def index(request):
 def home(request):
     return render(request, 'web/home.html')
 
+def index(request):
+    return render(request, 'web/index.html')
+
 
 
 def postUsuario(request):
     url = "http://127.0.0.1:8000/usuarios/crear"
-    form = UsuarioForm(request.POST or None)
-    if form.is_valid():
-        nombre = form.cleaned_data.get("nombre")
-        password = form.cleaned_data.get("password")
-        email = form.cleaned_data.get("email")
-        edad = form.cleaned_data.get("edad")
-        auto = form.cleaned_data.get("auto")
-        estacionamiento = form.cleaned_data.get("estacionamiento")
-        comuna = form.cleaned_data.get("comuna")
-        print(nombre)
-        print(password)
-        print(email)
-        print(edad)
-        print(auto)
-        print(estacionamiento)
-        print(comuna) 
-        data = {'nombre': nombre, 'password': password, 'email': email, 'edad': edad, 'auto': auto, 'estacionamiento': estacionamiento, 'comuna': comuna}
-        headers = {'Content-type': 'application/json', }
-        response = requests.post(url, data=json.dumps(data), headers=headers)
-        return render(request, 'web/form.html', {
-            'response': response
-        })
+    if request.method == 'POST':
+        form = UsuarioForm(request.POST or None)
+        if form.is_valid():
+            nombre = form.cleaned_data.get("nombre")
+            password = form.cleaned_data.get("password")
+            email = form.cleaned_data.get("email")
+            edad = form.cleaned_data.get("edad")
+            auto = form.cleaned_data.get("auto")
+            estacionamiento = form.cleaned_data.get("estacionamiento")
+            comuna = form.cleaned_data.get("comuna")
+            print(nombre)
+            print(password)
+            print(email)
+            print(edad)
+            print(auto)
+            print(estacionamiento)
+            print(comuna) 
+            data = {'nombre': nombre, 'password': password, 'email': email, 'edad': edad, 'auto': auto, 'estacionamiento': estacionamiento, 'comuna': comuna}
+            headers = {'Content-type': 'application/json', }
+            response = requests.post(url, data=json.dumps(data), headers=headers)
+            messages.success(request, "Usuario registrado correctamente")
+            return render(request, 'web/index.html', {
+                'response': response
+            })
+        else:
+            #Usuario no autenticado, mostrar mensaje de error
+            form.add_error(None, "Credenciales incorrectas. Por favor, inténtalo de nuevo.")        
+    return render(request, 'web/register.html')       

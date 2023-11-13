@@ -21,8 +21,13 @@
         <div class="col-md-6">
             <form method="post" action="{% url 'web:login' %}">
                 {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">Iniciar sesión</button>
+                <input class="form-control rounded-5" id="id_email" type="email" name="email" maxlength="100" placeholder="email" required>
+                <br>
+                <input class="form-control rounded-5" id="id_password" type="password" name="password" maxlength="100" placeholder="password" required>
+                <br>
+                <div class="text-center pt-3">
+                    <button type="submit" class="btn btn-warning p-3 rounded-5">Iniciar sesion</button>
+                </div>
             </form>
         </div>
     </div>
