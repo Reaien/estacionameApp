@@ -9,3 +9,8 @@ class UsuarioForm(forms.Form):
     auto = forms.CharField(max_length=100)
     estacionamiento = forms.CharField(max_length=100)
     comuna = forms.CharField(max_length=100)
+
+
+class LoginForm(forms.Form):
+    email = forms.CharField(max_length=100)
+    password = forms.CharField(widget=forms.PasswordInput)

@@ -1,0 +1,70 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block contenido_body %}
+
+    <div class="row m-0 p-0 text-center mt-2">
+        <div class="col-12">
+            <h1 class=" fw-bold text-warning">Estacioname APP</h1>
+        </div>
+        <div class="col-12">
+            <img class="img-fluid" src="{% static 'web/img/logo.png' %}" alt="logo-est">
+        </div>
+        <div class="col-12">
+            <h1 class="text-white fw-bold">Registro de usuario</h1>
+        </div>
+    </div>
+
+    <div class="row justify-content-center align-items-center ms-4 me-4 mt-1">
+        <div class="col-md-6">
+            <form action="{% url 'web:formulario' %}" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <p> 
+                    <input class="form-control rounded-5" id="id_nombre" type="text" name="nombre" maxlength="100" placeholder="Nombre" required>
+                </p>
+                <br>
+                <p>
+                    <input class="form-control rounded-5" id="id_password" type="password" name="password" maxlength="12" placeholder="Password" required>
+                </p>
+                <br>
+                <p>
+                    <input class="form-control rounded-5" id="id_email" type="email" name="email" maxlength="100" placeholder="Email" required>
+                </p>
+                <br>
+                <p> 
+                    <input class="form-control rounded-5" id="id_edad" type="text" name="edad" maxlength="100" placeholder="Edad" required>
+                </p>
+                <br>
+                <p> 
+                    <input class="form-control rounded-5" id="id_auto" type="text" name="auto" maxlength="100" placeholder="Auto" required>
+                </p>
+                <br>
+                <p> 
+                    <input class="form-control rounded-5" id="id_estacionamiento" type="estacionamiento" name="estacionamiento" maxlength="100" placeholder="Estacionamiento" required>
+                </p>
+                <br>
+                <p> 
+                    <input class="form-control rounded-5" id="id_comuna" type="text" name="comuna" maxlength="100" placeholder="Comuna" required>
+                </p>
+                <br>
+                <p class="text-center">
+                    <input type="checkbox" id="terms" name="terminos" value="term">
+                    <label for="terminos" class="text-white" >I agree with <a href="" class="text-decoration-none fw-bold text-info">Terms and Conditions</a></label><br>
+                </p>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-warning p-3 rounded-5">Registrar usuario</button>
+                </div>
+                
+            </form>
+    
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+
+
+            
