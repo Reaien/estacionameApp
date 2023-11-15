@@ -2,6 +2,57 @@
 {% load static %}
 {% block contenido_body %}
 
-    <h1>hola</h1>
+    <div class="row justify-content-center align-items-center mt-4">
+        <div class="col-6 text-center">
+            <h2 class="text-warning fw-bold">Bienvenido User</h2>
+        </div>
+        <div class="col-6 text-center">
+            <img class="img-fluid rounded-circle w-25 border border-warning" src="{% static 'web/img/avatar.jpg' %}" alt="">
+        </div>
+        <div class="col-12 text-center">
+            <h2 class="text-warning fw-bold mt-5 pt-5">Hola User ¿En que comuna deseas estacionar hoy?</h2>
+        </div>
+        <div class="col-12 text-center mt-5 pt-5">
+
+            <div id="carouselExample" class="carousel slide">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <a href=""><img class="img-fluid altura-comuna rounded-circle w-25 border border-warning me-4" src="{% static 'web/img/cerro_navia.jpg' %}" alt=""></a>
+                    <a href=""><img class="img-fluid altura-comuna rounded-circle w-25 border border-warning me-4" src="{% static 'web/img/est_central.jpg' %}" alt=""></a>
+                    <a href=""><img class="img-fluid altura-comuna rounded-circle w-25 border border-warning me-4" src="{% static 'web/img/la_cisterna.jpg' %}" alt=""></a>
+                  </div>
+                  <div class="carousel-item">
+                    <a href=""><img class="img-fluid altura-comuna rounded-circle w-25 border border-warning me-4" src="{% static 'web/img/la_florida.jpg' %}" alt=""></a>
+                    <a href=""><img class="img-fluid altura-comuna rounded-circle w-25 border border-warning me-4" src="{% static 'web/img/la_reina.jpg' %}" alt=""></a>
+                    <a href=""><img class="img-fluid altura-comuna rounded-circle w-25 border border-warning me-4" src="{% static 'web/img/las_condes.jpg' %}" alt=""></a>
+                  </div>
+                  <div class="carousel-item">
+                    <a href=""><img class="img-fluid altura-comuna rounded-circle w-25 border border-warning me-4" src="{% static 'web/img/maipu.jpg' %}" alt=""></a>
+                    <a href=""><img class="img-fluid altura-comuna rounded-circle w-25 border border-warning me-4" src="{% static 'web/img/pudahuel.jpg' %}" alt=""></a>
+                    <a href=""><img class="img-fluid altura-comuna rounded-circle w-25 border border-warning me-4" src="{% static 'web/img/providencia.jpg' %}" alt=""></a>
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+        </div>
+    </div>
+    <div class="row ms-0 me-0 mt-5 p-0">
+        <div class="col-12 m-0 p-0">
+            <div id="mapa" class="container_mapa m-0"></div>
+        </div>
+    </div>
+
+
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAiM-uOjAVu38ma8Eq0Wi6cF4LrW4mbGQ&libraries=places&callback=initMap" defer></script>
+    <script src="{% static 'web/js/map.js'%}"></script>
 
 {% endblock %}

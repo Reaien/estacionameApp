@@ -9,3 +9,10 @@ h1,h2,h3,h4, p, a, button, label, input{
 ::-webkit-input-placeholder {
     font-weight: bold;
 }
+#mapa{
+    height: 25rem;
+}
+
+.altura-comuna{
+    height: 7rem;
+}
