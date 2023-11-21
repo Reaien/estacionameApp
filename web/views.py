@@ -5,6 +5,8 @@ from rest_framework.utils import json
 from django.shortcuts import render, redirect
 from .forms import UsuarioForm, LoginForm
 from django.contrib import messages
+from django.http import HttpResponseRedirect
+
 
 app_name = 'web'
 
@@ -37,7 +39,10 @@ def login(request):
     return render(request, 'web/login.html', {'form': form})
     
 def home(request):
-    return render(request, 'web/home.html')
+    response = requests.get('http://127.0.0.1:8000/comunas/lista').json()
+    return render(request, 'web/home.html',{
+        'response': response
+    })
 
 def index(request):
     return render(request, 'web/index.html')
