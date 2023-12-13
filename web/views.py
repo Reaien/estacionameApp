@@ -43,7 +43,7 @@ def home(request):
     responseUser = requests.get('http://127.0.0.1:8000/usuarios/users').json()
     return render(request, 'web/home.html',{
         'responseComuna': responseComuna,
-        'responseUser': responseUser
+        'responseUser': responseUser,
     })
 
 def index(request):
@@ -52,6 +52,7 @@ def index(request):
 
 
 def postUsuario(request):
+    responseTipoUser = requests.get('http://127.0.0.1:8000/tiposUsuario/listar/').json()
     url = "http://127.0.0.1:8000/usuarios/crear"
     if request.method == 'POST':
         form = UsuarioForm(request.POST or None)
@@ -60,6 +61,7 @@ def postUsuario(request):
             password = form.cleaned_data.get("password")
             email = form.cleaned_data.get("email")
             edad = form.cleaned_data.get("edad")
+            tipoUsuario = form.data.get('tipoUsuario')
             auto = form.cleaned_data.get("auto")
             estacionamiento = form.cleaned_data.get("estacionamiento")
             comuna = form.cleaned_data.get("comuna")
@@ -67,10 +69,11 @@ def postUsuario(request):
             print(password)
             print(email)
             print(edad)
+            print(tipoUsuario)
             print(auto)
             print(estacionamiento)
             print(comuna) 
-            data = {'nombre': nombre, 'password': password, 'email': email, 'edad': edad, 'auto': auto, 'estacionamiento': estacionamiento, 'comuna': comuna}
+            data = {'nombre': nombre, 'password': password, 'email': email, 'edad': edad, 'auto': auto, 'estacionamiento': estacionamiento, 'comuna': comuna, 'tipo_usuario': tipoUsuario,}
             headers = {'Content-type': 'application/json', }
             response = requests.post(url, data=json.dumps(data), headers=headers)
             messages.success(request, "Usuario registrado correctamente")
@@ -80,4 +83,6 @@ def postUsuario(request):
         else:
             #Usuario no autenticado, mostrar mensaje de error
             form.add_error(None, "Credenciales incorrectas. Por favor, inténtalo de nuevo.")        
-    return render(request, 'web/register.html')       
+    return render(request, 'web/register.html',{
+        'responseTipoUser': responseTipoUser
+    })       

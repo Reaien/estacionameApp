@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'usuario',
     'comunas',
+    'tipoUsuario',
     'web',
     'rest_framework',
 ]

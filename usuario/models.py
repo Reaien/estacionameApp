@@ -7,10 +7,10 @@ class Usuario(models.Model):
     password = models.CharField(max_length=12)
     email = models.CharField(max_length=100)
     edad = models.CharField(max_length=3)
+    tipo_usuario = models.CharField(max_length=15, null=True)
     auto = models.CharField(max_length=100)
     estacionamiento = models.CharField(max_length=20)
     comuna = models.CharField(max_length=100)
-    tipo_cliente = models.DateTimeField(auto_now_add=True)
 
 
     class Meta:
