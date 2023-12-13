@@ -7,17 +7,18 @@
             <h2 class="text-warning fw-bold">Bienvenido User</h2>
         </div>
         <div class="col-6 text-center">
-            <img class="img-fluid rounded-circle w-25 border border-warning" src="{% static 'web/img/avatar.jpg' %}" alt="">
+            <img class="img-fluid rounded-circle w-50 border border-warning" src="{% static 'web/img/avatar.jpg' %}" alt="">
         </div>
         <div class="col-12 text-center">
-            <h2 class="text-warning fw-bold mt-5 pt-5">Hola User ¿En que comuna deseas estacionar hoy?</h2>
+            <h2 class="text-warning  mt-3">Hola User ¿En que comuna deseas estacionar hoy?</h2>
         </div>
-        <div class="col-12 text-center mt-5 pt-5">
-
-          {% for comuna in response %}
-          <a href=""><img class="img-fluid altura-comuna rounded-circle w-25 border border-warning me-4" src="{{comuna.imagenComuna}}" alt=""></a>
-          {% endfor %}
-
+        <div class="row d-flex flex-wrap">
+            {% for comuna in responseComuna %}
+                <div class="col-4">
+                    <img class="img-fluid altura-comuna rounded-circle border border-warning mt-3" src="{{comuna.imagenComuna}}" alt="">
+                    <p class="text-white text-center">{{comuna.nombreComuna}}</p>
+                </div>
+            {% endfor %}
         </div>
     </div>
     <div class="row ms-0 me-0 mt-5 p-0">

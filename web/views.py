@@ -39,9 +39,11 @@ def login(request):
     return render(request, 'web/login.html', {'form': form})
     
 def home(request):
-    response = requests.get('http://127.0.0.1:8000/comunas/lista').json()
+    responseComuna = requests.get('http://127.0.0.1:8000/comunas/lista').json()
+    responseUser = requests.get('http://127.0.0.1:8000/usuarios/users').json()
     return render(request, 'web/home.html',{
-        'response': response
+        'responseComuna': responseComuna,
+        'responseUser': responseUser
     })
 
 def index(request):
