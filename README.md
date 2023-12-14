@@ -1,6 +1,9 @@
 <b>Presentacion y ET Arquitectura</b>
 
-Estas son la ip de las API en AWS APP EN AWS (están OFF para no gastar creditos, hableme si quiere que las levante) ivanduarteherrera@gmail.com
+Estas son la ip de las API en AWS APP EN AWS (están OFF para no gastar creditos, hableme si quiere que las levante) 
+<br> 
+ivanduarteherrera@gmail.com
+<br>
 <br>
 api estacionamientos
 http://107.21.234.48:8000/estacionamientos/listar/
