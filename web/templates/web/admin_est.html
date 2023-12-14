@@ -1,0 +1,30 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block contenido_body %}
+    <div class="row mt-5 mb-5">
+        <div class="col-12 text-center">
+            <h1 class="text-white fw-bold">Lista de usuarios</h1>
+        </div>
+    </div>
+    {% for est in responseEst %}
+    <div class="col-md-12 d-flex justify-content-center">
+        <div class="card mb-3" style="max-width: 380px;">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="{{ est.imagenEstacionamiento }}" class="banner-card" alt="foto_est">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title"> Contacto: {{est.nombreContacto}}</h5>
+                  <p class="card-text">Teléfono: {{est.fonoContacto}}</p>               
+                  <p class="card-text">Dirección: {{est.direccion}}</p>               
+                  <p class="card-text">Comuna: {{est.nombreComuna}}</p>
+                  <a class="btn btn-warning">Editar</a>         
+                  <a class="btn btn-danger">Eliminar</a>           
+                </div>
+              </div>
+            </div>
+        </div>            
+    </div>
+    {% endfor %}
+{% endblock %}

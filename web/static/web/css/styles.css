@@ -17,3 +17,16 @@ h1,h2,h3,h4, p, a, button, label, input{
     height: 7rem;
 }
 
+.banner-comuna{
+    object-fit: cover;
+    object-position: center;
+    height: 35vw;
+    width: 100%;
+}
+
+.banner-card{
+    object-fit: cover;
+    object-position: center;
+    height: 30vw;
+    width: 100%;
+}

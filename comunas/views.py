@@ -1,9 +1,10 @@
 # Create your views here.
 from django.shortcuts import render
 from .models import *
+from comunas import serializer
 from .serializer import ComunaSerializer
 from rest_framework.response import Response
-from rest_framework import viewsets
+from rest_framework import viewsets, generics
 from rest_framework.decorators import api_view
 
 # Create your views here.
@@ -19,6 +20,11 @@ def ComunasAll(request):
     comunas = Comuna.objects.all()
     serializer = ComunaSerializer(comunas, many=True)
     return Response(serializer.data)
+
+#get por id
+class ComunasId(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Comuna.objects.all()
+    serializer_class = serializer.ComunaSerializer
 
 
 @api_view(['POST'])

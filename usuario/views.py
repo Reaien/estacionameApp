@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from .models import *
 from .serializer import UsuariosSerializer
+from usuario import serializer
+from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
@@ -14,11 +16,9 @@ def UsuariosLista(request):
     return Response(serializer.data)
 
 #get por id
-@api_view(['GET'])
-def UsuariosDetalle(request, pk):
-    users = Usuario.objects.all(id=pk)
-    serializer = UsuariosSerializer(users, many=False)
-    return Response(serializer.data)
+class TipoUsuarioId(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Usuario.objects.all()
+    serializer_class = serializer.UsuariosSerializer
 
 #crear user
 @api_view(['POST'])

@@ -1,0 +1,28 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block contenido_body %}
+    <div class="row mt-5 mb-5">
+        <div class="col-12 text-center">
+            <h1 class="text-white fw-bold">Lista de usuarios</h1>
+        </div>
+    </div>
+    {% for user in responseUser %}
+    <div class="col-md-12 d-flex justify-content-center">
+        <div class="card mb-3" style="width: 380px;">
+            <div class="row g-0">
+            <div class="col-md-8">
+                <div class="card-body">
+                <h5 class="card-title"> Usuario: {{user.nombre}}</h5>
+                <p class="card-text">Email: {{user.email}}</p>               
+                <p class="card-text">Edad: {{user.edad}}</p>               
+                <p class="card-text">tipo_usuario: {{user.tipo_usuario}}</p>
+                <p class="card-text">Comuna: {{user.comuna}}</p>
+                <a class="btn btn-warning">Editar</a>         
+                <a class="btn btn-danger">Eliminar</a>         
+                </div>
+            </div>
+            </div>
+        </div>            
+    </div>
+    {% endfor %}
+{% endblock %}

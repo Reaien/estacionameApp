@@ -36,20 +36,12 @@
                 </p>
                 <br>
                 <p>
-                    <label for="tipoUsuario">Tipo de usuario</label>
+                    <label for="tipoUsuario" class="text-white">Tipo de usuario</label>
                     <select name="tipoUsuario" id="tipoUsuario" required>
                         {% for tipoUsuario in responseTipoUser %}
                             <option value="{{tipoUsuario.tipo_Usuario}}">{{tipoUsuario.tipo_Usuario}}</option>
                         {% endfor %}
                     </select>
-                </p>
-                <br>
-                <p> 
-                    <input class="form-control rounded-5" id="id_auto" type="text" name="auto" maxlength="100" placeholder="Auto" required>
-                </p>
-                <br>
-                <p> 
-                    <input class="form-control rounded-5" id="id_estacionamiento" type="estacionamiento" name="estacionamiento" maxlength="100" placeholder="Estacionamiento" required>
                 </p>
                 <br>
                 <p> 

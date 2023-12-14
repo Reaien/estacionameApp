@@ -1,0 +1,44 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block contenido_body %}
+
+    <div class="row">
+        <div class="col-12 p-0">
+            <img class=" banner-comuna" src="{{ responseComuna.imagenComuna }}" alt="">
+        </div>
+        <div class="col-12">
+            {% if responseComuna %}
+                <h1 class="text-warning fw-bold text-uppercase text-center mt-5">{{ responseComuna.nombreComuna }}</h1>
+            {% endif %}
+        </div>
+        <div class="col-12">
+            {% if responseComuna %}
+                <h1 class="text-white text-center mt-5"> Lista de estacionamientos </h1>
+            {% endif %}
+        </div>
+        <!--ira aqui un if?-->
+        {% for est in responseEstacionamiento %}
+        <div class="col-md-12 d-flex justify-content-center">
+            <div class="card mb-3" style="max-width: 380px;">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img src="{{ est.imagenEstacionamiento }}" class="banner-card" alt="foto_est">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title"> Contacto: {{est.nombreContacto}}</h5>
+                      <p class="card-text">Teléfono: {{est.fonoContacto}}</p>               
+                      <p class="card-text">Dirección: {{est.direccion}}</p>               
+                      <p class="card-text">Comuna: {{est.nombreComuna}}</p>
+                      <a class="btn btn-warning">Tomar Arriendo</a>         
+                    </div>
+                  </div>
+                </div>
+            </div>            
+        </div>
+        {% endfor %}
+    </div>
+
+
+
+{% endblock %}

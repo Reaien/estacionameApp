@@ -2,30 +2,132 @@
 {% load static %}
 {% block contenido_body %}
 
-    <div class="row justify-content-center align-items-center mt-4">
-        <div class="col-6 text-center">
-            <h2 class="text-warning fw-bold">Bienvenido User</h2>
+    {% if user_data.tipo_usuario == 'Arrendatario' %}
+        <div class="row justify-content-center align-items-center mt-4">
+            <div class="col-6 text-center">
+
+                <h2 class="text-warning">Bienvenido</h2>
+                
+
+            </div>
+            <div class="col-6 text-center">
+                <p class="text-white">{{user_data.email}}</p>
+            </div>
+            <div class="col-12 text-center">
+                <h2 class="text-warning mt-3">¿En que comuna deseas estacionar?</h2>
+            </div>
+            <div class="row d-flex flex-wrap">
+                {% for comuna in responseComuna %}
+                
+                    <div class="col-4">
+                        <a class="text-decoration-none" href="{% url 'web:estComuna' comuna.id %}">
+                            <img class="img-fluid altura-comuna rounded-circle border border-warning mt-3" src="{{comuna.imagenComuna}}" alt="">
+                            <p class="text-white text-center">{{comuna.nombreComuna}}</p>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
-        <div class="col-6 text-center">
-            <img class="img-fluid rounded-circle w-50 border border-warning" src="{% static 'web/img/avatar.jpg' %}" alt="">
+        <div class="row ms-0 me-0 mt-5 p-0">
+            <div class="col-12 m-0 p-0">
+                <div id="mapa" class="container_mapa m-0"></div>
+            </div>
         </div>
-        <div class="col-12 text-center">
-            <h2 class="text-warning  mt-3">Hola User ¿En que comuna deseas estacionar hoy?</h2>
+    {% endif %}
+
+    {% if user_data.tipo_usuario == 'Arrendador' %}
+        <div class="row mt-2">
+            <div class="col-12 text-center">
+                <h1 class="text-warning">Registra tu estacionamiento para ser arrendado</h1>
+            </div>
         </div>
-        <div class="row d-flex flex-wrap">
-            {% for comuna in responseComuna %}
-                <div class="col-4">
-                    <img class="img-fluid altura-comuna rounded-circle border border-warning mt-3" src="{{comuna.imagenComuna}}" alt="">
-                    <p class="text-white text-center">{{comuna.nombreComuna}}</p>
+        <div class="row justify-content-center align-items-center ms-4 me-4 mt-5">
+            <div class="col-md-6">
+                <form action="{% url 'web:home' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                    <p> 
+                        <input class="form-control rounded-5" id="id_nombreContacto" type="text" name="nombreContacto" placeholder="Nombre de contacto" required>
+                    </p>
+                    <br>
+                    <p>
+                        <input class="form-control rounded-5" id="id_fonoContacto" type="text" name="fonoContacto"  placeholder="Fono Contacto" required>
+                    </p>
+                    <br>
+                    <br>
+                    <p>
+                        <label class="text-white" for="nombreComuna">Comuna</label>
+                        <select name="nombreComuna" id="comuna" required>
+                            {% for comuna in responseComuna %}
+                                <option value="{{comuna.nombreComuna}}">{{comuna.nombreComuna}}</option>
+                            {% endfor %}
+                        </select>
+                    </p>
+                    <br>
+                    <p>
+                        <input class="form-control rounded-5" id="id_direccion" type="text" name="direccion" placeholder="Direccion" required>
+                    </p>
+    
+                    <p> 
+                        <label class="text-white">Foto de estacionamiento</label>
+                        <input class="form-control rounded-5" id="id_imagenEstacionamiento" type="file" name="imagenEstacionamiento" required>
+                    </p>
+                    <br>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-warning p-3 rounded-5">Registrar estacionamiento</button>
+                    </div>
+                    
+                </form>
+        
+            </div>
+        </div>
+    {% endif %}
+
+    {% if user_data.tipo_usuario == 'Administrador' %}
+        <div class="row mt-2">
+            <div class="col-12 text-center">
+                <h1 class="text-white">Bienvenido {{user_data.email}}</h1>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-12 text-center">
+                <h3 class="text-warning">Administra los registros</h3>
+            </div>
+        </div>
+        <!--card adm users-->
+        <div class="col-md-12 d-flex justify-content-center">
+            <div class="card mb-3" style="max-width: 380px;">
+                <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="../../static/web/img/users.jpg" class="banner-card" alt="foto_est">
                 </div>
-            {% endfor %}
+                <div class="col-md-8 text-center">
+                    <div class="card-body">
+                    <h5 class="card-title">Usuarios</h5>            
+                    <a href="{% url 'web:admin_users' %}" class="btn btn-warning">Administrar</a>         
+                    </div>
+                </div>
+                </div>
+            </div>            
         </div>
-    </div>
-    <div class="row ms-0 me-0 mt-5 p-0">
-        <div class="col-12 m-0 p-0">
-            <div id="mapa" class="container_mapa m-0"></div>
+        <!--card adm est-->
+        <div class="col-md-12 d-flex justify-content-center mt-5">
+            <div class="card mb-3" style="max-width: 380px;">
+                <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="../../static/web/img/est_admin.png" class="banner-card" alt="foto_est">
+                </div>
+                <div class="col-md-8 text-center">
+                    <div class="card-body">
+                    <h5 class="card-title">Estacionamientos</h5>            
+                    <a href="{% url 'web:admin_est' %}" class="btn btn-warning">Administrar</a>         
+                    </div>
+                </div>
+                </div>
+            </div>            
         </div>
-    </div>
+    {% endif %}
 
 
 
