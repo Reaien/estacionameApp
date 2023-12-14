@@ -18,4 +18,4 @@ api comunas
 http://44.218.125.139:8000/comunas/lista
 
 front-end
-44.207.242.180:8000
+http:/44.207.242.180:8000
